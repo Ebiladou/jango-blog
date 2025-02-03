@@ -7,12 +7,19 @@ STATUS_CHOICES = (
     ('archived', 'Archived'),
 )
 
-class Blog_category (models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True, max_length=100)
+CATEGORY_CHOICES = (
+    ('law', 'Law'),
+    ('finance', 'Finance'),
+    ('tech', 'Tech'),
+    ('randoms', 'Randoms'),
+)
 
-    def __str__(self):
-        return self.name
+#class Blog_category (models.Model):
+#    name = models.CharField(max_length=100)
+#    slug = models.SlugField(unique=True, max_length=100)
+#
+#    def __str__(self):
+#        return self.name
 
 class Blog_post(models.Model):
     title = models.CharField(max_length=100)
@@ -22,7 +29,7 @@ class Blog_post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
-    category = models.ForeignKey(Blog_category, on_delete=models.CASCADE, related_name='posts')
+    category = models.CharField( max_length= 20, choices=CATEGORY_CHOICES, default='randoms')
 
     def save(self, *args, **kwargs):
         if not self.slug:

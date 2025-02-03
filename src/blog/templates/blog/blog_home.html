@@ -1,0 +1,14 @@
+<h1>Blog Posts</h1>
+{% if posts %}
+    <ul>
+    {% for post in posts %}
+        <li>
+            <h2><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h2>
+            <p>{{ post.created_at|date:"M d, Y" }}</p>
+            <p>{{ post.content|truncatewords:30 }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nothing to see here, cunt.</p>
+{% endif %}
