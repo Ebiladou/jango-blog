@@ -1,8 +1,15 @@
-<h1>Blog Posts</h1>
+{% extends "main.html" %}
+
+{% block content %}
+
+<section class='blog-container'>
+    <h1>Blog Posts</h1>
+
 {% if posts %}
-    <ul>
+    <ul class='grid-container'>
     {% for post in posts %}
-        <li>
+        <li class='grid-item'>
+            <div><img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image"></div>
             <h2><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h2>
             <p>{{ post.created_at|date:"M d, Y" }}</p>
             <p>{{ post.content|truncatewords:30 }}</p>
@@ -11,4 +18,7 @@
     </ul>
 {% else %}
     <p>Nothing to see here, cunt.</p>
-{% endif %}
+{% endif %}       
+
+</section>
+{% endblock %}
