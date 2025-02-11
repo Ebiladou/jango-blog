@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>My Blog</title>
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
 </head>
 <body>
     <header>
@@ -16,6 +17,12 @@
         </ul>
     </nav>
    </header>
-   {% block content %} {% endblock %}
+
+   <section class='body-container'>
+   {% block content %} 
+   {% endblock %}
+   </section>
+
+   <script src="{% static 'blog/js/style.js' %}"></script>
 </body>
 </html>
